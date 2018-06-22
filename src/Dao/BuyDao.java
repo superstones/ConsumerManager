@@ -31,13 +31,9 @@ public class BuyDao {
 	
 	
 	
-	
-	
-	/**
-	 * 财务审批功能
-	 */
+
      public static  boolean Examine(int mount,int price) {
-    	 if(mount*price <=200000) {
+    	 if(mount*price <=20000) {
     		 return true;
     	 }else {
     		 System.out.println("超出预算");
@@ -45,9 +41,7 @@ public class BuyDao {
     	 }
      }
      
-     /**
-      * 产品到货等待时间
-      */
+
      public static void Arrival() {
     	 try {
 			Thread.sleep(1000);
@@ -56,12 +50,7 @@ public class BuyDao {
 			e.printStackTrace();
 		}
      }
-     
-     /**
-      * 检查产品是否合格
-      * @param quality
-      * @return
-      */
+
 
      public static boolean Qualified(int quality) {
     	 if(quality == 1) {

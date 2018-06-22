@@ -52,8 +52,8 @@ public class Buy {
 		}
 		@Override
 		public String toString() {
-			return "[产品=" + product + ", 产品数量=" + mount + ", 质量=" + quality + ", 价格=" + price
-					+ ", 状态=" + status + "]";
+			return "产品:" + product + ", 产品数量:" + mount + ", 质量:" + quality + ", 价格:" + price
+					+ ", 状态:" + status ;
 		}
 	      
       

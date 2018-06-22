@@ -63,7 +63,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "[客户编号=" + no + ", 客户姓名=" + name + ", 客户电话=" + phone + ", 客户地址=" + address + "]";
+		return "客户编号:" + no + ", 客户姓名:" + name + ", 客户电话:" + phone + ", 客户地址:" + address  ;
 	}
 
 

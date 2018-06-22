@@ -52,8 +52,7 @@ public class Sale {
 	}
 	@Override
 	public String toString() {
-		return " [销售编号=" + no + ", 销售时间=" + time + ", 销售地址=" + place + ", 销售产品=" + product + ", mainperson="
-				+ mainperson + "]";
+		return " 销售编号:" + no + ", 销售时间:" + time + ", 销售地址:" + place + ", 销售产品:" + product ;
 	}
 	
     

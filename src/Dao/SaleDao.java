@@ -64,19 +64,7 @@ public class SaleDao {
     	 createFile(newlist);
      }
      
-     public static void updatePerson(String no,String perosn) {
-    	 List<Sale> newlist=new ArrayList<Sale>();
-     	List<Sale> listall = queryAll();
-     	Sale sale =query(no);
-     	for(Sale e :listall) {
-     		if(e.getNo().equals(sale.getNo())) {
-     			e.setMainperson(perosn);
-     		}
-     		newlist.add(e);
-     	}
-     	 createFile(newlist);
-     }
-     
+
      public static List<Sale> queryAll() {
     	 List<Sale> list =null;
     	 try {

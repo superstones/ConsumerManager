@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Management {
-    public final double EXCEPTIONS = 100000;
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -49,6 +48,65 @@ public class Management {
             }
         }
 
+    }
+
+    public static void Buy() {
+        while (true) {
+            System.out.println("欢迎进入采购");
+            System.out.println("请输入购买的产品");
+            System.out.println("输入0退出");
+            String product = sc.next();
+            if (product.equals("0")) {
+                break;
+            }
+            System.out.println("请输入要购买的数量");
+            int mount = sc.nextInt();
+            if (mount == 0) {
+                break;
+            }
+            System.out.println("请输入购买产品的单价");
+            int price = sc.nextInt();
+            if (price == 0) {
+                break;
+            }
+            if (BuyDao.Examine(mount, price)) {
+                Buy buy = new Buy(product, mount, price);
+                List<Buy> list = new ArrayList<Buy>();
+                System.out.println(buy);
+                System.out.println("等待产品入库");
+                BuyDao.Arrival();
+                buy.setStatus("已入库");
+                System.out.println("产品已入库");
+                System.out.println(buy);
+                System.out.println("产品是否合格(y/n)");
+                String q = sc.next();
+                switch (q) {
+                    case "y":
+                        buy.setQuality(1);
+                        System.out.println(buy);
+                        break;
+                    case "n":
+                        buy.setQuality(0);
+                        buy.setStatus("返厂处理");
+                        System.out.println(buy);
+                        break;
+
+                }
+                if (BuyDao.Qualified(buy.getQuality())) {
+                    list.add(buy);
+                    BuyDao.create(list);
+                    break;
+                } else {
+                    list.add(buy);
+                    BuyDao.create(list);
+                    break;
+                }
+
+            } else {
+                break;
+            }
+
+        }
     }
 
     public static void Sale() {
@@ -181,62 +239,5 @@ public class Management {
         }
     }
 
-    public static void Buy() {
-        while (true) {
-            System.out.println("欢迎进入采购");
-            System.out.println("请输入购买的产品");
-            System.out.println("输入0退出");
-            String product = sc.next();
-            if (product.equals("0")) {
-                break;
-            }
-            System.out.println("请输入要购买的数量");
-            int mount = sc.nextInt();
-            if (mount == 00) {
-                break;
-            }
-            System.out.println("请输入购买产品的单价");
-            int price = sc.nextInt();
-            if (price == 00) {
-                break;
-            }
-            if (BuyDao.Examine(mount, price)) {
-                Buy buy = new Buy(product, mount, price);
-                List<Buy> list = new ArrayList<Buy>();
-                System.out.println(buy);
-                System.out.println("等待产品入库");
-                BuyDao.Arrival();
-                buy.setStatus("已入库");
-                System.out.println("产品已入库");
-                System.out.println(buy);
-                System.out.println("产品是否合格(y/n)");
-                String q = sc.next();
-                switch (q) {
-                    case "y":
-                        buy.setQuality(1);
-                        System.out.println(buy);
-                        break;
-                    case "n":
-                        buy.setQuality(0);
-                        buy.setStatus("返厂处理");
-                        System.out.println(buy);
-                        break;
 
-                }
-                if (BuyDao.Qualified(buy.getQuality())) {
-                    list.add(buy);
-                    BuyDao.create(list);
-                    break;
-                } else {
-                    list.add(buy);
-                    BuyDao.create(list);
-                    break;
-                }
-
-            } else {
-                break;
-            }
-
-        }
-    }
 }

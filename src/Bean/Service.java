@@ -74,7 +74,7 @@ public class Service {
 
 	@Override
 	public String toString() {
-		return " [服务编号=" + no + ", 开始时间=" + assaigner + ",结束时间=" + handler + ",评价=" + evalute + "]";
+		return " 服务编号:" + no + ", 开始时间:" + assaigner + ",结束时间:" + handler + ",评价:" + evalute ;
 	}
      
      
