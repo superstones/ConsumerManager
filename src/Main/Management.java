@@ -1,11 +1,11 @@
 package Main;
 
-import Bean.Buy;
 import Bean.Client;
+import Bean.Purchase;
 import Bean.Sale;
 import Bean.Service;
-import Dao.BuyDao;
 import Dao.ClientDao;
+import Dao.PurchaseDao;
 import Dao.SaleDao;
 import Dao.ServiceDao;
 
@@ -29,7 +29,7 @@ public class Management {
             System.out.println("*****请输入选项*****");
             switch (sc.nextInt()) {
                 case 1:
-                    Buy();
+                    Purchase();
                     break;
                 case 2:
                     Sale();
@@ -50,7 +50,7 @@ public class Management {
 
     }
 
-    public static void Buy() {
+    public static void Purchase() {
         while (true) {
             System.out.println("欢迎进入采购");
             System.out.println("请输入购买的产品");
@@ -69,12 +69,12 @@ public class Management {
             if (price == 0) {
                 break;
             }
-            if (BuyDao.Examine(mount, price)) {
-                Buy buy = new Buy(product, mount, price);
-                List<Buy> list = new ArrayList<Buy>();
+            if (PurchaseDao.Examine(mount, price)) {
+                Purchase buy = new Purchase(product, mount, price);
+                List<Purchase> list = new ArrayList<Purchase>();
                 System.out.println(buy);
                 System.out.println("等待产品入库");
-                BuyDao.Arrival();
+                PurchaseDao.Arrival();
                 buy.setStatus("已入库");
                 System.out.println("产品已入库");
                 System.out.println(buy);
@@ -92,13 +92,13 @@ public class Management {
                         break;
 
                 }
-                if (BuyDao.Qualified(buy.getQuality())) {
+                if (PurchaseDao.Qualified(buy.getQuality())) {
                     list.add(buy);
-                    BuyDao.create(list);
+                    PurchaseDao.create(list);
                     break;
                 } else {
                     list.add(buy);
-                    BuyDao.create(list);
+                    PurchaseDao.create(list);
                     break;
                 }
 

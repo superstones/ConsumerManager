@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 
-import Bean.Buy;
+import Bean.Purchase;
 
-public class BuyDao {
+public class PurchaseDao {
 	
 	
-	public static void create(List<Buy> list) {
+	public static void create(List<Purchase> list) {
 		StringBuffer str = new StringBuffer();
-		for(Buy b:list) {
+		for(Purchase b:list) {
 			str.append(b.getProduct()+" "+b.getMount()+" "+b.getPrice()+" "+b.getQuality()+" "+b.getStatus()+"#");
 		}
 		
