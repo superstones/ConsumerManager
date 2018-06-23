@@ -17,7 +17,7 @@ public class Purchase {
         this.product = product;
         this.mount = mount;
         this.price = price;
-        this.quality = Math.random() > 0.5 ? 1 : 0;
+        this.quality =0;
         this.status = "未入库";
     }
 

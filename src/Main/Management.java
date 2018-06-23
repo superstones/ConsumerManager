@@ -26,7 +26,7 @@ public class Management {
             System.out.println("*****3.客户管理*****");
             System.out.println("*****4.服务管理*****");
             System.out.println("*****0.退出系统*****");
-            System.out.println("*****请输入选项*****");
+            System.out.println("*****请选择*****");
             switch (sc.nextInt()) {
                 case 1:
                     Purchase();
@@ -55,8 +55,8 @@ public class Management {
             System.out.println("欢迎进入采购");
             System.out.println("请输入购买的产品");
             System.out.println("输入0退出");
-            String product = sc.next();
-            if (product.equals("0")) {
+            String p = sc.next();
+            if (p.equals("0")) {
                 break;
             }
             System.out.println("请输入要购买的数量");
@@ -70,37 +70,51 @@ public class Management {
                 break;
             }
             if (PurchaseDao.Examine(mount, price)) {
-                Purchase buy = new Purchase(product, mount, price);
+                Purchase purchase = new Purchase(p, mount, price);
                 List<Purchase> list = new ArrayList<Purchase>();
-                System.out.println(buy);
+                System.out.println(purchase);
                 System.out.println("等待产品入库");
-                PurchaseDao.Arrival();
-                buy.setStatus("已入库");
-                System.out.println("产品已入库");
-                System.out.println(buy);
-                System.out.println("产品是否合格(y/n)");
-                String q = sc.next();
-                switch (q) {
+                System.out.println("产品是否到货(y/n)");
+                String a = sc.next();
+                switch (a) {
                     case "y":
-                        buy.setQuality(1);
-                        System.out.println(buy);
-                        break;
-                    case "n":
-                        buy.setQuality(0);
-                        buy.setStatus("返厂处理");
-                        System.out.println(buy);
-                        break;
+                        purchase.setStatus("已入库");
+                        System.out.println("产品已入库");
+                        System.out.println(purchase);
+                        System.out.println("产品是否合格(y/n)");
+                        String q = sc.next();
+                        switch (q) {
+                            case "y":
+                                purchase.setQuality(1);
+                                System.out.println(purchase);
+                                if (PurchaseDao.Qualified(purchase.getQuality())) {
+                                    list.add(purchase);
+                                    PurchaseDao.add(list);
+                                    break;
+                                } else {
+                                    list.add(purchase);
+                                    PurchaseDao.add(list);
+                                    break;
+                                }
 
+                            case "n":
+                                purchase.setQuality(0);
+                                purchase.setStatus("返厂处理");
+                                System.out.println(purchase);
+                                break;
+
+                        }
+                        break;
+                    case"n":
+                        purchase.setStatus("未入库");
+                        System.out.println("产品未入库");
+                        break;
                 }
-                if (PurchaseDao.Qualified(buy.getQuality())) {
-                    list.add(buy);
-                    PurchaseDao.create(list);
-                    break;
-                } else {
-                    list.add(buy);
-                    PurchaseDao.create(list);
-                    break;
-                }
+
+//                PurchaseDao.Arrival();
+//                purchase.setStatus("已入库");
+
+
 
             } else {
                 break;

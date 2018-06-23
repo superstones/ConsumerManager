@@ -11,7 +11,7 @@ import Bean.Purchase;
 public class PurchaseDao {
 	
 	
-	public static void create(List<Purchase> list) {
+	public static void add(List<Purchase> list) {
 		StringBuffer str = new StringBuffer();
 		for(Purchase b:list) {
 			str.append(b.getProduct()+" "+b.getMount()+" "+b.getPrice()+" "+b.getQuality()+" "+b.getStatus()+"#");
@@ -42,14 +42,14 @@ public class PurchaseDao {
      }
      
 
-     public static void Arrival() {
-    	 try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-     }
+//     public static void Arrival() {
+//    	 try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//     }
 
 
      public static boolean Qualified(int quality) {
